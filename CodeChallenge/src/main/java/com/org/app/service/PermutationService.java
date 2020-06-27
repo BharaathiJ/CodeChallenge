@@ -1,13 +1,15 @@
 package com.org.app.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PermutationService {
-
+	// Since all collections are static members
 	private PermutationService() {
-
 	}
 
 	/**
@@ -28,6 +30,25 @@ public class PermutationService {
 	}
 
 	/**
+	 * To generate the unique permutation based on the given list of numbers
+	 * 
+	 * @param arr     contains list of integer values
+	 * @param defines the index position
+	 * @param n       defines the size of the elements
+	 * @return
+	 */
+	public static List<List<Integer>> generateUniquePermutations(int[] arr) {
+		if (Objects.isNull(arr) || arr.length == 0) {
+			return Collections.emptyList();
+		}
+
+		List<List<Integer>> uniquePermutationList = new ArrayList<>();
+		generateUniquePermutationsRecursive(arr, 0, arr.length, uniquePermutationList);
+
+		return uniquePermutationList;
+	}
+
+	/**
 	 * Recursive method to generate the unique permutation based on the given
 	 * integer array
 	 * 
@@ -36,29 +57,20 @@ public class PermutationService {
 	 * @param n      defines the size of the elements
 	 * @param result contains the unique permutation list
 	 */
-	public static void generateUniquePermutations(int[] arr, int index, int n, List<List<Integer>> result) {
-		if (arr.length == 0) {
-			return;
-		}
-
+	public static void generateUniquePermutationsRecursive(int[] arr, int index, int n, List<List<Integer>> result) {
 		if (index == arr.length - 1) {
-			List<Integer> list = Arrays.stream(arr).boxed().collect(Collectors.toList());
-			result.add(list);
+			result.add(Arrays.stream(arr).boxed().collect(Collectors.toList()));
 			return;
 		}
 		for (int i = index; i < n; i++) {
-
 			// Proceed further for arr[i] only if it doesn't match with any of the integer
 			// values after arr[index]
-
-			boolean check = swapRequired(arr, index, i);
-			if (check) {
+			if (swapRequired(arr, index, i)) {
 				swap(arr, index, i);
-				generateUniquePermutations(arr, index + 1, n, result);
+				generateUniquePermutationsRecursive(arr, index + 1, n, result);
 				swap(arr, index, i);
 			}
 		}
-
 	}
 
 	/**
@@ -73,5 +85,4 @@ public class PermutationService {
 		arr[i] = arr[j];
 		arr[j] = temp;
 	}
-
 }

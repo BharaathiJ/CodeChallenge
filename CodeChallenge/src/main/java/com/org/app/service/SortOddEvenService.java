@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class SortOddEvenService {
-
+	// Since all collections are static members
 	private SortOddEvenService() {
 
 	}
@@ -18,24 +19,18 @@ public class SortOddEvenService {
 	 * @return sorted array with odd numbers sorted first then even numbers
 	 */
 	public static List<Integer> sortOddThenEven(int[] arr) {
-
-		if (arr.length > 0) {
+		if (Objects.nonNull(arr) && arr.length > 0) {
 			List<Integer> combinedList = new ArrayList<>();
 			List<Integer> evenList = new ArrayList<>();
 			List<Integer> oddList = new ArrayList<>();
-			int size = arr.length;
-
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < arr.length; i++) {
 				if (arr[i] % 2 == 0)
 					evenList.add(arr[i]);
 				else
 					oddList.add(arr[i]);
-
 			}
-
 			evenList = sortArray(evenList);
 			oddList = sortArray(oddList);
-
 			combinedList.addAll(oddList);
 			combinedList.addAll(evenList);
 			return combinedList;
@@ -52,7 +47,6 @@ public class SortOddEvenService {
 	private static List<Integer> sortArray(List<Integer> arrayList) {
 		Integer[] arr = arrayList.toArray(new Integer[arrayList.size()]);
 		int temp = 0;
-
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = i + 1; j < arr.length; j++) {
 				if (arr[i] > arr[j]) {
