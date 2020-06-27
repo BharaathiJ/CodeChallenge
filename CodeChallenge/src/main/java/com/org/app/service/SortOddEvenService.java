@@ -2,42 +2,66 @@ package com.org.app.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class SortOddEvenService {
 
-	public static void sortOddThenEven(int[] arr, List<Integer> combinedList) {
-		List<Integer> evenList = new ArrayList<Integer>();
-		List<Integer> oddList = new ArrayList<Integer>();
-		int size = arr.length;
+	private SortOddEvenService() {
 
-		for (int i = 0; i < size; i++) {
-			if (arr[i] % 2 == 0) {
-				evenList.add(arr[i]);
-			} else if (arr[i] % 2 != 0) {
-				oddList.add(arr[i]);
-			}
-		}
-
-		sortArray(evenList);
-		sortArray(oddList);
-
-		combinedList.addAll(oddList);
-		combinedList.addAll(evenList);
 	}
 
-	private static void sortArray(List<Integer> arrayList) {
-		Integer[] arr = arrayList.toArray(new Integer[arrayList.size()]);
-		for (int i = 1; i < arr.length; i++) {
+	/**
+	 * To sort a list of numbers so that odd numbers are sorted before even numbers
+	 * 
+	 * @param arr contains list of integer values
+	 * @return sorted array with odd numbers sorted first then even numbers
+	 */
+	public static List<Integer> sortOddThenEven(int[] arr) {
 
-			if (arr[i] < arr[i - 1]) {
-				arr[i] = arr[i] + arr[i - 1];
-				arr[i - 1] = arr[i] - arr[i - 1];
-				arr[i] = arr[i] - arr[i - 1];
-				i = 0;
+		if (arr.length > 0) {
+			List<Integer> combinedList = new ArrayList<>();
+			List<Integer> evenList = new ArrayList<>();
+			List<Integer> oddList = new ArrayList<>();
+			int size = arr.length;
+
+			for (int i = 0; i < size; i++) {
+				if (arr[i] % 2 == 0)
+					evenList.add(arr[i]);
+				else
+					oddList.add(arr[i]);
 
 			}
+
+			evenList = sortArray(evenList);
+			oddList = sortArray(oddList);
+
+			combinedList.addAll(oddList);
+			combinedList.addAll(evenList);
+			return combinedList;
 		}
-		arrayList = Arrays.asList(arr);
+		return Collections.emptyList();
+	}
+
+	/**
+	 * To sort the given array list in ascending order
+	 * 
+	 * @param arrayList contains list of integer values
+	 * @return sorted array list
+	 */
+	private static List<Integer> sortArray(List<Integer> arrayList) {
+		Integer[] arr = arrayList.toArray(new Integer[arrayList.size()]);
+		int temp = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i] > arr[j]) {
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		return Arrays.asList(arr);
 	}
 }
