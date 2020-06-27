@@ -6,7 +6,7 @@
 	<artifactId>CodeChallenge</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CodeChallenge</name>
-	<description>Demo Project</description>
+	<description>Code Challenge</description>
 
 	<dependencies>
 		<dependency>

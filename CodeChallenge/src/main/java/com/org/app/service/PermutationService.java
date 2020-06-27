@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PermutationService {
-	// Since all collections are static members
+	// Since its all methods are static members
 	private PermutationService() {
 	}
 
@@ -20,7 +20,7 @@ public class PermutationService {
 	 * @param curPos defines the current position
 	 * @return
 	 */
-	static boolean swapRequired(int[] arr, int start, int curPos) {
+	private static boolean swapRequired(int[] arr, int start, int curPos) {
 		for (int i = start; i < curPos; i++) {
 			if (arr[i] == arr[curPos]) {
 				return false;
@@ -41,10 +41,8 @@ public class PermutationService {
 		if (Objects.isNull(arr) || arr.length == 0) {
 			return Collections.emptyList();
 		}
-
 		List<List<Integer>> uniquePermutationList = new ArrayList<>();
 		generateUniquePermutationsRecursive(arr, 0, arr.length, uniquePermutationList);
-
 		return uniquePermutationList;
 	}
 
@@ -57,7 +55,7 @@ public class PermutationService {
 	 * @param n      defines the size of the elements
 	 * @param result contains the unique permutation list
 	 */
-	public static void generateUniquePermutationsRecursive(int[] arr, int index, int n, List<List<Integer>> result) {
+	private static void generateUniquePermutationsRecursive(int[] arr, int index, int n, List<List<Integer>> result) {
 		if (index == arr.length - 1) {
 			result.add(Arrays.stream(arr).boxed().collect(Collectors.toList()));
 			return;
@@ -80,7 +78,7 @@ public class PermutationService {
 	 * @param i   defines the swap element position
 	 * @param j   defines the swap element position
 	 */
-	static void swap(int[] arr, int i, int j) {
+	private static void swap(int[] arr, int i, int j) {
 		int temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;

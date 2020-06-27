@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class SortOddEvenService {
-	// Since all collections are static members
+	// Since its all methods are static members
 	private SortOddEvenService() {
-
 	}
 
 	/**
