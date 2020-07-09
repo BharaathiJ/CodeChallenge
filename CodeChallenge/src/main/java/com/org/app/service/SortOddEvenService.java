@@ -7,17 +7,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class SortOddEvenService {
-	// Since its all methods are static members
-	private SortOddEvenService() {
-	}
-
 	/**
 	 * To sort a list of numbers so that odd numbers are sorted before even numbers
 	 * 
 	 * @param arr contains list of integer values
 	 * @return sorted array with odd numbers sorted first then even numbers
 	 */
-	public static List<Integer> sortOddThenEven(int[] arr) {
+	public List<Integer> sortOddThenEven(int[] arr) {
 		if (Objects.nonNull(arr) && arr.length > 0) {
 			List<Integer> combinedList = new ArrayList<>();
 			List<Integer> evenList = new ArrayList<>();
@@ -43,7 +39,7 @@ public class SortOddEvenService {
 	 * @param arrayList contains list of integer values
 	 * @return sorted array list
 	 */
-	private static List<Integer> sortArray(List<Integer> arrayList) {
+	private List<Integer> sortArray(List<Integer> arrayList) {
 		Integer[] arr = arrayList.toArray(new Integer[arrayList.size()]);
 		int temp = 0;
 		for (int i = 0; i < arr.length; i++) {

@@ -12,11 +12,13 @@ public class CodeChallengeApplication {
 
 	public static void main(String[] args) {
 		int[] arrayValue = new int[] { 1, 2, 3, 4 };
-		List<List<Integer>> permutationList = PermutationService.generateUniquePermutations(arrayValue);
+		PermutationService permutationService = new PermutationService();
+		List<List<Integer>> permutationList = permutationService.generateUniquePermutations(arrayValue);
 		logger.info("----Unique Permutations--------");
 		permutationList.stream().forEach(i -> logger.info(i.toString()));
 		logger.info("----Sorting Numbers--------");
-		List<Integer> combinedList = SortOddEvenService.sortOddThenEven(arrayValue);
+		SortOddEvenService sortOddEvenService = new SortOddEvenService();
+		List<Integer> combinedList = sortOddEvenService.sortOddThenEven(arrayValue);
 		combinedList.stream().forEach(i -> logger.info(i.toString()));
 	}
 }

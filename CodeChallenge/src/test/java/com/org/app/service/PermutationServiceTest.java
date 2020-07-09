@@ -10,11 +10,13 @@ import java.util.List;
 import org.junit.Test;
 
 public class PermutationServiceTest {
+	
+	PermutationService permutationService = new PermutationService();
 
 	@Test
 	public void generateUniquePermutationsWithSameValueTest() {
 		int[] arrayList = new int[] { 1, 2, 3, 3 };
-		List<List<Integer>> uniquePermutations = PermutationService.generateUniquePermutations(arrayList);
+		List<List<Integer>> uniquePermutations = permutationService.generateUniquePermutations(arrayList);
 		List<List<Integer>> expectedList = Arrays.asList(Arrays.asList(1, 2, 3, 3), Arrays.asList(1, 3, 2, 3),
 				Arrays.asList(1, 3, 3, 2), Arrays.asList(2, 1, 3, 3), Arrays.asList(2, 3, 1, 3),
 				Arrays.asList(2, 3, 3, 1), Arrays.asList(3, 2, 1, 3), Arrays.asList(3, 2, 3, 1),
@@ -27,7 +29,7 @@ public class PermutationServiceTest {
 	@Test
 	public void generateUniquePermutationsWithDifferentValueTest() {
 		int[] arrayList = new int[] { 1, 2, 3, 4 };
-		List<List<Integer>> uniquePermutations = PermutationService.generateUniquePermutations(arrayList);
+		List<List<Integer>> uniquePermutations = permutationService.generateUniquePermutations(arrayList);
 		List<List<Integer>> expectedList = Arrays.asList(Arrays.asList(1, 2, 3, 4), Arrays.asList(1, 2, 4, 3),
 				Arrays.asList(1, 3, 2, 4), Arrays.asList(1, 3, 4, 2), Arrays.asList(1, 4, 3, 2),
 				Arrays.asList(1, 4, 2, 3), Arrays.asList(2, 1, 3, 4), Arrays.asList(2, 1, 4, 3),
@@ -43,13 +45,13 @@ public class PermutationServiceTest {
 
 	@Test
 	public void generateUniquePermutationsNullTest() {
-		List<List<Integer>> uniquePermutations = PermutationService.generateUniquePermutations(null);
+		List<List<Integer>> uniquePermutations = permutationService.generateUniquePermutations(null);
 		assertEquals(Collections.emptyList(), uniquePermutations);
 	}
 
 	@Test
 	public void generateUniquePermutationsEmptyTest() {
-		List<List<Integer>> uniquePermutations = PermutationService.generateUniquePermutations(new int[0]);
+		List<List<Integer>> uniquePermutations = permutationService.generateUniquePermutations(new int[0]);
 		assertEquals(Collections.emptyList(), uniquePermutations);
 	}
 }
